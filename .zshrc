@@ -112,9 +112,9 @@ source $ZSH/oh-my-zsh.sh
 export PATH=$PATH:/home/$USER/bin
 export PATH=$PATH:/home/$USER/.local/bin
 
-# Load Aliases
-if [ -f ~/.aliases ]; then
-    . ~/.aliases
+# Load Profile
+if [ -f ~/.profile ]; then
+    . ~/.profile
 fi
 
 # NVM Config

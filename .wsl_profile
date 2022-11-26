@@ -1,0 +1,4 @@
+# WSL Profile
+alias ir-aws-login="/usr/local/bin/awssaml_domain && export AWS_PROFILE=saml"
+alias pbcopy="clip.exe"
+alias pbpaste="powershell.exe -command 'Get-Clipboard' | sed -e 's/\r\n$//g'"

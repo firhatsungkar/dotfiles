@@ -15,4 +15,5 @@ require "user.nvim-tree"
 require "user.bufferline"
 require "user.toggleterm"
 require "user.lualine"
+require "user.refactoring"
 

@@ -36,6 +36,7 @@ brew install spaceship
 brew install nvm
 brew install pyenv
 brew install toilet
+brew install ripgrep
 
 # Install Specific MacOS Apps
 if [[ "$OSTYPE" == "darwin"* ]]; then

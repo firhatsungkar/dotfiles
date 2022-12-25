@@ -63,6 +63,7 @@ return require('packer').startup({function(use)
   -- Telescope Plugins
   use {
     "nvim-telescope/telescope.nvim", branch = "0.1.x",
+    require = { {'nvim-lua/plenary.nvim'} }
   }                                                           -- Main gaze plugin
   use {
     'nvim-telescope/telescope-fzf-native.nvim', run = 'make',
@@ -83,6 +84,15 @@ return require('packer').startup({function(use)
   use { 'nvim-treesitter/nvim-treesitter-context',
     require = "nvim-treesitter/nvim-treesitter"
   }                                                           -- context.vim on treesitter
+
+  -- Refactoring Plugins
+  use {
+      "ThePrimeagen/refactoring.nvim",
+      requires = {
+          {"nvim-lua/plenary.nvim"},
+          {"nvim-treesitter/nvim-treesitter"}
+      }
+  }
 
   -- Git
   use "lewis6991/gitsigns.nvim"

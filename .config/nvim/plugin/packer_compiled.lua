@@ -209,6 +209,11 @@ _G.packer_plugins = {
     path = "/Users/firhatsungkar/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  ["refactoring.nvim"] = {
+    loaded = true,
+    path = "/Users/firhatsungkar/.local/share/nvim/site/pack/packer/start/refactoring.nvim",
+    url = "https://github.com/ThePrimeagen/refactoring.nvim"
+  },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
     path = "/Users/firhatsungkar/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",

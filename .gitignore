@@ -15,3 +15,6 @@ Thumbs.db
 
 # Utils flags
 .utils
+
+# Generated nvim plugins
+.config/nvim/plugin/*

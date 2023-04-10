@@ -77,4 +77,13 @@ return require('packer').startup(function(use)
     'jose-elias-alvarez/null-ls.nvim',
     require = 'williamboman/mason.nvim',
   }
+
+
+  -- File Explorer
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+  }
 end)

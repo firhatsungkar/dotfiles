@@ -1,4 +1,20 @@
 # WSL Profile
-alias ir-aws-login="/usr/local/bin/awssaml_domain && export AWS_PROFILE=saml"
 alias pbcopy="clip.exe"
 alias pbpaste="powershell.exe -command 'Get-Clipboard' | sed -e 's/\r\n$//g'"
+alias open="explorer.exe"
+
+# Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+
+# NVM Config
+export NVM_DIR="$HOME/.nvm"
+[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Spaceship Config
+source "/home/linuxbrew/.linuxbrew/opt/spaceship/spaceship.zsh"
+
+# Python
+PATH="$PATH:$HOME/.local/bin"
+

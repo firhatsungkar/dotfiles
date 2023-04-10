@@ -50,3 +50,10 @@ elif [[ "$(uname -r)" == *"microsoft"* ]]; then
   . $HOME/.wsl_profile
 fi
 
+
+CUSTOM_PROFILE=$HOME/.custom_profile
+if [[ -f "$CUSTOM_PROFILE" ]]; then
+  . $CUSTOM_PROFILE
+else
+    echo "$CUSTOM_PROFILE doesnt exist"
+fi

@@ -1,4 +1,4 @@
---[[ Vim Keymaps Config ]]
+--[Vim Keymaps Config ]]
 local opts = { noremap = true, silent = true }
 
 -- local term_opts = { silent = true }
@@ -52,7 +52,7 @@ keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 
 
 -- Insert --
--- Press jk fast to exit insert mode 
+-- Press jk fast to exit insert mode
 keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
@@ -80,3 +80,16 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 keymap("n", "<leader>y", "\"+y", opts)
 keymap("n", "<leader>Y", "\"+Y", opts)
 
+
+-- Telescope --
+vim.api.nvim_set_keymap("n", "<C-r>", ":Telescope lsp_document_symbols theme=dropdown previewer=false<cr>", {
+	noremap = true,
+	silent = true,
+	desc = "Search [D]ocument [S]ymbols"
+})
+vim.api.nvim_set_keymap("n", "<C-p>",
+	":Telescope find_files theme=dropdown hidden=true previewer=false<cr>", {
+		noremap = true,
+		silent = true,
+		desc = "Search [D]ocument [S]ymbols"
+	})

@@ -47,6 +47,10 @@ keymap("n", "<C-A-L>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
+-- Navigate QuickFix
+keymap("n", "<C-n>", ":cn<CR>zz", opts)
+keymap("n", "<C-A-N>", ":cp<CR>zz", opts)
+
 -- Quick Replace
 keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
 

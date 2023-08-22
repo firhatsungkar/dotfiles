@@ -21,7 +21,7 @@ return {
 				},
 			}
 		}
-		vim.keymap.set("n", "<leader>ee", ":Neotree toggle<cr>", {
+		vim.keymap.set("n", "<leader>ee", ":Neotree reveal float<cr>", {
 			silent = true,
 			noremap = true,
 			desc = "[E]explore Fil[E]"

@@ -15,7 +15,6 @@ alias py="python3"
 alias reload="exec $SHELL"
 alias rm="rm -i"
 alias rmf="/bin/rm"
-alias tmux="tmux -u "
 alias untar="tar -xvf"
 alias vim="nvim"
 

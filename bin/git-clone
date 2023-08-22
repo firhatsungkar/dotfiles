@@ -1,0 +1,114 @@
+#!/usr/bin/env python3
+import subprocess
+import argparse
+import sys
+import os
+from dataclasses import dataclass, field
+from pathlib import Path
+from enum import Enum
+
+ENV_CODE_DIR = os.environ.get('CODE_DIR', "Code")
+DEFAULT_CODE_DIR = os.path.join(Path.home(), ENV_CODE_DIR)
+PROG="GitPlace"
+DESC=f"""
+Effortlessly clone GitHub repositories and place them in a structured directory hierarchy for efficient organization.
+Default code directory: {DEFAULT_CODE_DIR}.
+"""
+
+class CLONE_TYPES(Enum):
+    HTTP = "http"
+    HTTPS = "https"
+    SSH = "ssh"
+
+@dataclass
+class Repo:
+    repo_address: str
+    repo_clone_type: CLONE_TYPES = field(init=False)
+    repo_vendor: str = field(init=False)
+    repo_owner: str = field(init=False)
+    repo_name: str = field(init=False)
+
+    def __post_init__(self):
+        repo_address = self.repo_address
+        if repo_address.startswith('https') or repo_address.startswith('http'):
+            protocol, uri = tuple(repo_address.split('://'))
+            self.repo_vendor, self.repo_owner, repo_name = tuple(uri.split('/'))
+            self.repo_clone_type = CLONE_TYPES[protocol.upper()]
+            self.repo_name = repo_name.replace('.git', '')
+        elif repo_address.startswith('git@'):
+            self.repo_clone_type = CLONE_TYPES.SSH
+            _, uri = tuple(repo_address.split('@'))
+            self.repo_vendor, self.repo_address = tuple(uri.split(':'))
+            self.repo_owner, repo_name = tuple(self.repo_address.split('/'))
+            self.repo_name = repo_name.replace('.git', '')
+        else:
+            sys.stderr.write(f"Unsupported git repository address: {repo_address}")
+            sys.exit(1)
+
+    def __str__(self):
+        return (f"""[Repository Info]
+Repository address: {self.repo_address}
+Repository vendor: {self.repo_vendor}
+Repository owner: {self.repo_owner}
+Repository name: {self.repo_name}
+Git protocol: {self.repo_clone_type.value}
+              """)
+
+
+def run_command(command: str):
+    return subprocess.run(command,
+                          shell=True,
+                          stdout=subprocess.PIPE,
+                          stderr=subprocess.PIPE,
+                          text=True)
+
+def check_git_cmd_exists() -> None:
+    git_command = "git -h"
+    result = run_command(git_command)
+
+    if len(result.stderr) > 0:
+        sys.stderr.write("git command not found.")
+        sys.exit(1)
+
+def run_git_clone(repo: Repo, parent_dir: str):
+    target_dir = os.path.join(parent_dir,
+                              repo.repo_vendor,
+                              repo.repo_owner,
+                              repo.repo_name)
+    repo_address = repo.repo_address
+    if repo.repo_clone_type == CLONE_TYPES.HTTP or repo.repo_clone_type == CLONE_TYPES.HTTPS:
+        repo_address = f"{repo.repo_clone_type}://{repo.repo_vendor}/{repo.repo_owner}/{repo.repo_name}.git"
+    if repo.repo_clone_type == CLONE_TYPES.SSH:
+        repo_address = f"git@{repo.repo_vendor}:{repo.repo_owner}/{repo.repo_name}.git"
+
+    command = f"git clone {repo_address} {target_dir}"
+    print(f"""Run command:
+> {command}""")
+    result = run_command(command)
+    if len(result.stderr) > 0:
+        sys.stderr.write(result.stderr)
+        sys.exit(1)
+    sys.stdout.write(result.stdout)
+
+if __name__ == "__main__":
+    check_git_cmd_exists()
+    parser = argparse.ArgumentParser(prog=PROG, description=DESC)
+    parser.add_argument("repo_address",
+                        nargs="*",
+                        help="Git repositories addresses")
+    parser.add_argument("-p", "--parent-dir",
+                        default=DEFAULT_CODE_DIR,
+                        help="Parent code directory")
+    parser.add_argument("-i", "--info",
+                        action=argparse.BooleanOptionalAction,
+                        help="Print repositories information.")
+    args = parser.parse_args();
+    if len(args.repo_address) == 0:
+        parser.print_help()
+
+    for repo_address in args.repo_address:
+        repo = Repo(repo_address)
+        if args.info:
+            print(repo)
+        run_git_clone(repo, args.parent_dir)
+    sys.exit(0)

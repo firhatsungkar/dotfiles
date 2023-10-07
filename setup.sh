@@ -11,3 +11,4 @@ if [ ! -d "($HOME)/.config" ]; then
 fi
 
 ln -sf $HOME/.dotfiles/.config/nvim $HOME/.config/nvim
+ln -sf $HOME/.dotfiles/.config/alacritty $HOME/.config/alacritty

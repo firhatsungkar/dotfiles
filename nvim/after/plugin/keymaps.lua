@@ -28,7 +28,7 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<leader>pv", vim.cmd.Ex)
 
 keymap("n", "<leader>e", ":Lex 30<cr>", opts)
-keymap("n", "<leader>w", ":w<CR>", opts)
+-- keymap("n", "<leader>w", ":w<CR>", opts)
 keymap("n", "<leader>q", ":q<CR>", opts)
 
 keymap("n", "J", "mzJ`z", opts)

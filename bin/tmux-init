@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Get list of existing tmux sessions
+sessions=$(tmux list-sessions -F "#S" 2>/dev/null)
+
+# Options for fzf
+options=("Create New Session" $sessions)
+
+# Prompt user to select an option
+selected_option=$(printf '%s\n' "${options[@]}" | fzf --prompt="Choose a tmux session:")
+
+# If 'Create New Session' is selected, create a new session
+if [[ "$selected_option" == "Create New Session" ]]; then
+    read -p "Enter new session name: " new_session_name
+    tmux new -s "$new_session_name"
+# Else, attach to the selected session
+else
+    tmux attach -t "$selected_option"
+fi

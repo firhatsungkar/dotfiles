@@ -17,11 +17,12 @@ brew install curl
 brew install wget --with-iri
 brew install openssh
 brew install grep
+brew install exa
 brew insatll lua
 brew install vim --with-override-system-vi
 brew install neovim
 brew install tmux
-brew install fdfind
+brew install fd
 brew install tty-clock
 brew install duf
 brew install bat
@@ -37,6 +38,8 @@ brew install nvm
 brew install pyenv
 brew install toilet
 brew install ripgrep
+brew install dog
+brew install jqp
 
 # Install Specific MacOS Apps
 if [[ "$OSTYPE" == "darwin"* ]]; then

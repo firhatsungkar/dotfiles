@@ -10,5 +10,6 @@ if [ ! -d "($HOME)/.config" ]; then
   mkdir -p "($HOME)/.config";
 fi
 
-ln -sf $HOME/.dotfiles/.config/nvim $HOME/.config/nvim
-ln -sf $HOME/.dotfiles/.config/alacritty $HOME/.config/alacritty
+ln -sf $HOME/.dotfiles/tmux $HOME/.config/tmux
+ln -sf $HOME/.dotfiles/nvim $HOME/.config/nvim
+ln -sf $HOME/.dotfiles/alacritty $HOME/.config/alacritty

@@ -13,7 +13,6 @@ syntax on
 :set smarttab
 :set noswapfile
 :set nobackup
-:set undodir=~/.vim/undodir
 :set undofile
 :set autoindent
 :set mouse=a

@@ -21,3 +21,12 @@ My Dot Files Setup
 ```
 > git clone https://github.com/firhatsungkar/dotfiles.git ~/.dotfiles
 ```
+
+## Install
+
+```
+stow --target ~/.config alacritty
+stow --target ~/.config nvim
+stow --target ~/.config starship
+stow --target ~/.config tmux
+```
